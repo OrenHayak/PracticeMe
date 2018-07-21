@@ -1,0 +1,43 @@
+{
+  "project_info": {
+    "project_number": "376566309468",
+    "firebase_url": "https://practiceme-41671.firebaseio.com",
+    "project_id": "practiceme-41671",
+    "storage_bucket": "practiceme-41671.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:376566309468:android:b8d643cb5c7b2753",
+        "android_client_info": {
+          "package_name": "com.example.eliavmenachi.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "376566309468-f2vqgutcqnu247b9n0s88sojodh3r9le.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXsfq1ScbFplP6mBfp2bgybbMpgtX-Oss"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
