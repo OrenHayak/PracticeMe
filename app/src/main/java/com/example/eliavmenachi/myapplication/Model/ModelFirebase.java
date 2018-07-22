@@ -23,38 +23,38 @@ import java.util.List;
 
 public class ModelFirebase {
 
-    public void addStudent(Student student){
+    public void addExercise(Exercise exercise){
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("students").child(student.id).setValue(student);
+        mDatabase.child("exercises").child(exercise.id).setValue(exercise);
     }
 
-    public void cancellGetAllStudents() {
-        DatabaseReference stRef = FirebaseDatabase.getInstance().getReference().child("students");
+    public void cancellGetAllExercises() {
+        DatabaseReference stRef = FirebaseDatabase.getInstance().getReference().child("exercises");
         stRef.removeEventListener(eventListener);
     }
 
 
 
 
-    interface GetAllStudentsListener{
-        public void onSuccess(List<Student> studentslist);
+    interface GetAllExercisesListener{
+        public void onSuccess(List<Exercise> exerciseslist);
     }
 
     ValueEventListener eventListener;
 
-    public void getAllStudents(final GetAllStudentsListener listener) {
-        DatabaseReference stRef = FirebaseDatabase.getInstance().getReference().child("students");
+    public void getAllExercises(final GetAllExercisesListener listener) {
+        DatabaseReference exRef = FirebaseDatabase.getInstance().getReference().child("exercises");
 
-        eventListener = stRef.addValueEventListener(new ValueEventListener() {
+        eventListener = exRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                List<Student> stList = new LinkedList<>();
+                List<Exercise> exList = new LinkedList<>();
 
                 for (DataSnapshot stSnapshot: dataSnapshot.getChildren()) {
-                    Student st = stSnapshot.getValue(Student.class);
-                    stList.add(st);
+                    Exercise exercise = stSnapshot.getValue(Exercise.class);
+                    exList.add(exercise);
                 }
-                listener.onSuccess(stList);
+                listener.onSuccess(exList);
             }
 
             @Override

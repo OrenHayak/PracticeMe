@@ -9,13 +9,14 @@ import android.arch.persistence.room.Query;
 import java.util.List;
 
 @Dao
-public interface StudentDao {
-    @Query("select * from Student")
-    List<Student> getAll();
+public interface ExerciseDao {
+    @Query("select * from Exercise")
+    List<Exercise> getAll();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(Student... students);
+    void insertAll(Exercise... exercises);
 
     @Delete
-    void delete(Student student);
+    void delete(Exercise exercise);
 }
+

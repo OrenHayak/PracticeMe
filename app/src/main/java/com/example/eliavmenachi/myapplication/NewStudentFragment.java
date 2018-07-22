@@ -14,8 +14,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
+import com.example.eliavmenachi.myapplication.Model.Exercise;
 import com.example.eliavmenachi.myapplication.Model.Model;
-import com.example.eliavmenachi.myapplication.Model.Student;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -33,7 +33,6 @@ public class NewStudentFragment extends Fragment {
 
     EditText nameEt;
     EditText idEt;
-    EditText dateEt;
     ImageView avatar;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     ProgressBar progress;
@@ -46,7 +45,6 @@ public class NewStudentFragment extends Fragment {
 
         nameEt = view.findViewById(R.id.new_student_name);
         idEt = view.findViewById(R.id.new_student_id);
-        dateEt = view.findViewById(R.id.new_student_bdate);
         progress = view.findViewById(R.id.new_student_progress);
         progress . setVisibility(View.GONE);
 
@@ -56,8 +54,8 @@ public class NewStudentFragment extends Fragment {
             public void onClick(View view) {
                 progress . setVisibility(View.VISIBLE);
 
-                final Student st = new Student();
-                st.name = nameEt.getText().toString();
+                final Exercise st = new Exercise();
+                st.description = nameEt.getText().toString();
                 st.id = idEt.getText().toString();
 
                 //save image
@@ -66,8 +64,8 @@ public class NewStudentFragment extends Fragment {
                         @Override
                         public void onDone(String url) {
                             //save student obj
-                            st.avatar = url;
-                            Model.instance.addStudent(st);
+                            st.image = url;
+                            Model.instance.addExercise(st);
                             getActivity().getSupportFragmentManager().popBackStack();
                         }
                     });

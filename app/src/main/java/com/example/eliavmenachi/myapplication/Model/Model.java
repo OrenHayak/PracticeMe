@@ -30,11 +30,11 @@ public class Model {
         modelFirebase = new ModelFirebase();
     }
 
-    public void cancellGetAllStudents() {
-        modelFirebase.cancellGetAllStudents();
+    public void cancellGetAllExercises() {
+        modelFirebase.cancellGetAllExercises();
     }
 
-    class StudentListData extends  MutableLiveData<List<Student>>{
+    class ExerciseListData extends  MutableLiveData<List<Exercise>>{
 
 
 
@@ -42,24 +42,24 @@ public class Model {
         protected void onActive() {
             super.onActive();
             // new thread tsks
-            // 1. get the students list from the local DB
-            StudentAsynchDao.getAll(new StudentAsynchDao.StudentAsynchDaoListener<List<Student>>() {
+            // 1. get the exercises list from the local DB
+            ExerciseAsynchDao.getAll(new ExerciseAsynchDao.ExerciseAsynchDaoListener<List<Exercise>>() {
                 @Override
-                public void onComplete(List<Student> data) {
-                    // 2. update the live data with the new student list
+                public void onComplete(List<Exercise> data) {
+                    // 2. update the live data with the new exercise list
                     setValue(data);
-                    Log.d("TAG","got students from local DB " + data.size());
+                    Log.d("TAG","got exercises from local DB " + data.size());
 
-                    // 3. get the student list from firebase
-                    modelFirebase.getAllStudents(new ModelFirebase.GetAllStudentsListener() {
+                    // 3. get the exercise list from firebase
+                    modelFirebase.getAllExercises(new ModelFirebase.GetAllExercisesListener() {
                         @Override
-                        public void onSuccess(List<Student> studentslist) {
-                            // 4. update the live data with the new student list
-                            setValue(studentslist);
-                            Log.d("TAG","got students from firebase " + studentslist.size());
+                        public void onSuccess(List<Exercise> exerciseslist) {
+                            // 4. update the live data with the new exercise list
+                            setValue(exerciseslist);
+                            Log.d("TAG","got exercises from firebase " + exerciseslist.size());
 
                             // 5. update the local DB
-                            StudentAsynchDao.insertAll(studentslist, new StudentAsynchDao.StudentAsynchDaoListener<Boolean>() {
+                            ExerciseAsynchDao.insertAll(exerciseslist, new ExerciseAsynchDao.ExerciseAsynchDaoListener<Boolean>() {
                                 @Override
                                 public void onComplete(Boolean data) {
 
@@ -74,25 +74,25 @@ public class Model {
         @Override
         protected void onInactive() {
             super.onInactive();
-            modelFirebase.cancellGetAllStudents();
-            Log.d("TAG","cancellGetAllStudents");
+            modelFirebase.cancellGetAllExercises();
+            Log.d("TAG","cancellGetAllExercises");
         }
 
-        public StudentListData() {
+        public ExerciseListData() {
             super();
-            //setValue(AppLocalDb.db.studentDao().getAll());
-            setValue(new LinkedList<Student>());
+            //setValue(AppLocalDb.db.exerciseDao().getAll());
+            setValue(new LinkedList<Exercise>());
         }
     }
 
-    StudentListData studentListData = new StudentListData();
+    ExerciseListData exerciseListData = new ExerciseListData();
 
-    public LiveData<List<Student>> getAllStudents(){
-        return studentListData;
+    public LiveData<List<Exercise>> getAllExercises(){
+        return exerciseListData;
     }
 
-    public void addStudent(Student st){
-        modelFirebase.addStudent(st);
+    public void addExercise(Exercise exercise){
+        modelFirebase.addExercise(exercise);
     }
 
 

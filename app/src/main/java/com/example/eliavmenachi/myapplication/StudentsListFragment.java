@@ -4,7 +4,6 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -19,10 +18,9 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.eliavmenachi.myapplication.Model.Exercise;
 import com.example.eliavmenachi.myapplication.Model.Model;
-import com.example.eliavmenachi.myapplication.Model.Student;
 
-import java.util.LinkedList;
 import java.util.List;
 
 
@@ -42,11 +40,11 @@ public class StudentsListFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         dataModel = ViewModelProviders.of(this).get(StudentListViewModel.class);
-        dataModel.getData().observe(this, new Observer<List<Student>>() {
+        dataModel.getData().observe(this, new Observer<List<Exercise>>() {
             @Override
-            public void onChanged(@Nullable List<Student> students) {
+            public void onChanged(@Nullable List<Exercise> exercises) {
                 myAdapter.notifyDataSetChanged();
-                Log.d("TAG","notifyDataSetChanged" + students.size());
+                Log.d("TAG","notifyDataSetChanged" + exercises.size());
             }
         });
     }
@@ -54,7 +52,7 @@ public class StudentsListFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Model.instance.cancellGetAllStudents();
+        Model.instance.cancellGetAllExercises();
     }
 
     @Override
@@ -114,13 +112,13 @@ public class StudentsListFragment extends Fragment {
                     @Override
                     public void onClick(View view) {
                         int index = (int) cb.getTag();
-                        Student s = dataModel.getData().getValue().get(index);
-                        s.checked = !s.checked;
+                        Exercise exercise = dataModel.getData().getValue().get(index);
+                        //s.checked = !s.checked;
                     }
                 });
             }
 
-            final Student s = dataModel.getData().getValue().get(i);
+            final Exercise exercise = dataModel.getData().getValue().get(i);
 
             TextView nameTv = view.findViewById(R.id.stListItem_name_tv);
             TextView idTv = view.findViewById(R.id.stListItem_id_tv);
@@ -129,16 +127,16 @@ public class StudentsListFragment extends Fragment {
 
             cb.setTag(i);
 
-            nameTv.setText(s.name);
-            idTv.setText(s.id);
-            cb.setChecked(s.checked);
+            nameTv.setText(exercise.description);
+            idTv.setText(exercise.id);
+            //cb.setChecked(s.checked);
             avatarView.setImageResource(R.drawable.avatar);
-            avatarView.setTag(s.id);
-            if (s.avatar != null){
-                Model.instance.getImage(s.avatar, new Model.GetImageListener() {
+            avatarView.setTag(exercise.id);
+            if (exercise.image != null){
+                Model.instance.getImage(exercise.image, new Model.GetImageListener() {
                     @Override
                     public void onDone(Bitmap imageBitmap) {
-                        if (s.id.equals(avatarView.getTag()) && imageBitmap != null) {
+                        if (exercise.id.equals(avatarView.getTag()) && imageBitmap != null) {
                             avatarView.setImageBitmap(imageBitmap);
                         }
                     }

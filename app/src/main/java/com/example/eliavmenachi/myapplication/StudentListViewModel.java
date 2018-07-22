@@ -3,19 +3,20 @@ package com.example.eliavmenachi.myapplication;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
 
+import com.example.eliavmenachi.myapplication.Model.Exercise;
 import com.example.eliavmenachi.myapplication.Model.Model;
-import com.example.eliavmenachi.myapplication.Model.Student;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public class StudentListViewModel extends ViewModel {
-    LiveData<List<Student>> data;
+    LiveData<List<Exercise>> data;
 
-    public LiveData<List<Student>> getData(){
-        data = Model.instance.getAllStudents();
+    public LiveData<List<Exercise>> getData(){
+        data = Model.instance.getAllExercises();
         return data;
     }
 
 
 }
+
+
