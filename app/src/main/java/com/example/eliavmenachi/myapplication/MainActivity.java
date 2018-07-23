@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
             StudentsListFragment fragment = new StudentsListFragment();
             FragmentTransaction tran = getSupportFragmentManager().beginTransaction();
             tran.add(R.id.main_container, fragment);
-            tran.addToBackStack("");
+                         tran.addToBackStack("");
             tran.commit();
         }
 

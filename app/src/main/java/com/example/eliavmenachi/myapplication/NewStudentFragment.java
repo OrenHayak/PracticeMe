@@ -57,6 +57,7 @@ public class NewStudentFragment extends Fragment {
                 final Exercise st = new Exercise();
                 st.description = nameEt.getText().toString();
                 st.id = idEt.getText().toString();
+                st.active = true;
 
                 //save image
                 if (imageBitmap != null) {
