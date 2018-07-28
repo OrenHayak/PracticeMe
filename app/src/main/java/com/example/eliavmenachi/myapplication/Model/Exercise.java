@@ -33,7 +33,7 @@ public class Exercise {
     public void setImage(String name) {
         this.image = name;
     }
-    public void setActive() {
-        this.active = active;
+    public void setActive(boolean act) {
+        this.active = act;
     }
 }
