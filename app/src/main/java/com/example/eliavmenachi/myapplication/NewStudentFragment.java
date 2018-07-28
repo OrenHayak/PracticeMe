@@ -66,12 +66,14 @@ public class NewStudentFragment extends Fragment {
                         public void onDone(String url) {
                             //save student obj
                             st.image = url;
+
+                            Model.instance.addExercise(st);
+                            getActivity().getSupportFragmentManager().popBackStack();
                         }
                     });
                 }
 
-                Model.instance.addExercise(st);
-                getActivity().getSupportFragmentManager().popBackStack();
+
             }
         });
 
