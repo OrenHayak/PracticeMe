@@ -130,7 +130,7 @@ public class StudentsListFragment extends Fragment {
             nameTv.setText(exercise.description);
             idTv.setText(exercise.id);
             //cb.setChecked(s.checked);
-            avatarView.setImageResource(R.drawable.avatar);
+            avatarView.setImageResource(R.drawable.practice);
             avatarView.setTag(exercise.id);
             if (exercise.image != null){
                 Model.instance.getImage(exercise.image, new Model.GetImageListener() {
