@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".loginFragment">
+
+    <TextView
+        android:id="@+id/tvHead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fill in your details:" />
+
+    <TextView
+        android:id="@+id/tvUsernameLog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User Name:"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="50dp" />
+
+    <EditText
+        android:id="@+id/etUserNameLog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="32dp" />
+
+    <EditText
+        android:id="@+id/etPasswordLog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        tools:layout_editor_absoluteX="83dp"
+        tools:layout_editor_absoluteY="94dp" />
+
+    <TextView
+        android:id="@+id/tvPasswordLog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password:"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="114dp" />
+
+    <Button
+        android:id="@+id/btnSubmitLog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        tools:layout_editor_absoluteX="147dp"
+        tools:layout_editor_absoluteY="209dp" />
+
+
+</android.support.constraint.ConstraintLayout>
