@@ -1,74 +1,148 @@
 package com.example.eliavmenachi.myapplication;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+
+import com.example.eliavmenachi.myapplication.Model.Exercise;
+import com.example.eliavmenachi.myapplication.Model.Model;
+import com.example.eliavmenachi.myapplication.Model.UserProfile;
+import com.example.eliavmenachi.myapplication.Model.UserProfileModel;
+
+import static android.app.Activity.RESULT_OK;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link RegisterFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link RegisterFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class RegisterFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_EMAIL = "ARG_EMAIL";
+    private static final String ARG_PASSWORD = "ARG_PASSWORD";
+    private static final String ARG_USER_NAME = "ARG_USER_NAME";
+    private static final String ARG_NAME = "ARG_NAME";
+    private static final String ARG_GOALS = "ARG_GOALS";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    private OnFragmentInteractionListener mListener;
+    //private OnFragmentInteractionListener mListener;
 
     public RegisterFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment RegisterFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static RegisterFragment newInstance(String param1, String param2) {
+    EditText etEmail;
+    EditText etPassword;
+    EditText etUsername;
+    EditText etName;
+    EditText etGoals;
+    Button btnSave;
+
+    /*public static RegisterFragment newInstance(String param1, String param2) {
         RegisterFragment fragment = new RegisterFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
-    }
+    }*/
 
-    @Override
+    /*@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-    }
+    }*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_register, container, false);
+        View view = inflater.inflate(R.layout.fragment_register, container, false);
+
+        etEmail = view.findViewById(R.id.etEmail);
+        etGoals = view.findViewById(R.id.etGoals);
+        etPassword = view.findViewById(R.id.etPassword);
+        etUsername = view.findViewById(R.id.etUsername);
+        etName = view.findViewById(R.id.etName);
+
+        btnSave = view.findViewById(R.id.btnSave);
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                final UserProfile userProfile = new UserProfile();
+                userProfile.password = etPassword.getText().toString();
+                userProfile.username = etUsername.getText().toString();
+                userProfile.email = etEmail.getText().toString();
+                userProfile.goals = etGoals.getText().toString();
+                userProfile.name = etName.getText().toString();
+
+
+                    UserProfileModel.instance.saveUserProfile(userProfile, new UserProfileModel.SaveUserProfileListener() {
+                        @Override
+                        public void onDone() {
+
+                            UserProfileModel.instance.addUserProfile(userProfile);
+                            getActivity().getSupportFragmentManager().popBackStack();
+                        }
+                    });
+            }
+        });
+
+
+        if (savedInstanceState != null) {
+            String email = savedInstanceState.getString(ARG_EMAIL);
+            if (email != null) {
+                etEmail.setText(email);
+            }
+            String password = savedInstanceState.getString(ARG_PASSWORD);
+            if (password != null) {
+                etPassword.setText(password);
+            }
+
+            String userName = savedInstanceState.getString(ARG_USER_NAME);
+            if (userName != null) {
+                etUsername.setText(userName);
+            }
+            String name = savedInstanceState.getString(ARG_NAME);
+            if (name != null) {
+                etName.setText(name);
+            }
+            String goals = savedInstanceState.getString(ARG_GOALS);
+            if (goals != null) {
+                etGoals.setText(goals);
+            }
+        }
+
+        return view;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onDestroyView(){
+        super.onDestroyView();
+    }
+    @Override
+    public void  onSaveInstanceState(Bundle bundle){
+        super.onSaveInstanceState(bundle);
+        bundle.putString(ARG_EMAIL, etEmail.getText().toString());
+        bundle.putString(ARG_PASSWORD, etPassword.getText().toString());
+        bundle.putString(ARG_USER_NAME, etUsername.getText().toString());
+        bundle.putString(ARG_NAME, etName.getText().toString());
+        bundle.putString(ARG_GOALS, etGoals.getText().toString());
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
+    /*public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
@@ -83,13 +157,13 @@ public class RegisterFragment extends Fragment {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
-    }
+    }*/
 
-    @Override
+    /*@Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
-    }
+    }*/
 
     /**
      * This interface must be implemented by activities that contain this
@@ -101,8 +175,16 @@ public class RegisterFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
+    /*public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
-    }
+    }*/
+
+
+    // TODO - look what this method does.
+        /*@Override
+        public void  onSaveInstanceState(Bundle bundle){
+            super.onSaveInstanceState(bundle);
+            bundle.putString(ARG_NAME, nameEt.getText().toString());
+            bundle.putString(ARG_ID, idEt.getText().toString());
+        }*/
 }

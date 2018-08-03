@@ -76,6 +76,15 @@ public class MainActivity extends AppCompatActivity {
                 tran.addToBackStack("tag");
                 tran.commit();
                 return true;
+
+            case R.id.menu_register:
+                Log.d("TAG","menu register selected");
+                RegisterFragment fragmentRegister = new RegisterFragment();
+                FragmentTransaction tranRegister = getSupportFragmentManager().beginTransaction();
+                tranRegister.replace(R.id.main_container, fragmentRegister);
+                tranRegister.addToBackStack("tag");
+                tranRegister.commit();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }

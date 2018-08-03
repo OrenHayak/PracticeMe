@@ -1,41 +1,47 @@
 package com.example.eliavmenachi.myapplication.Model;
 
 import android.app.admin.DeviceAdminInfo;
+import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
 import java.util.Date;
 
+@Entity
 public class UserProfile {
 
     @PrimaryKey
     @NonNull
     public String username;
     public String password;
-    public String Name;
-    public String Email;
-    public String Goals;
+    public String name;
+    public String email;
+    public String goals;
 
 
-    public String getFirstName() {
-        return Name;
+    public String getName() {
+        return this.name;
     }
     public String getGoals() {
-        return Goals;
+        return this.goals;
     }
     public String getPassword() {
-        return password;
+        return this.password;
     }
-    @NonNull
     public String getUsername() {
-        return username;
+        return this.username;
     }
-    public String getEmail() { return Email; }
+    public String getEmail() { return this.email; }
 
-    public void setName(String name) {
-        Name = name;
+    public void setName(String namee) { this.name = namee; }
+    public void setGoals(String goalse) {
+        this.goals = goalse;
     }
-    public void setGoals(String goals) {
-        Goals = goals;
+    public void setPassword(String passworde) {
+        this.password = passworde;
+    }
+    public void setEmail(String emaile) { this.email = emaile; }
+    public void setUsername(String usernamee) {
+        this.username = usernamee;
     }
 }
