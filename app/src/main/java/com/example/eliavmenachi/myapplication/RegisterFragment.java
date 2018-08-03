@@ -1,9 +1,6 @@
 package com.example.eliavmenachi.myapplication;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,12 +9,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.eliavmenachi.myapplication.Model.Exercise;
-import com.example.eliavmenachi.myapplication.Model.Model;
 import com.example.eliavmenachi.myapplication.Model.UserProfile;
 import com.example.eliavmenachi.myapplication.Model.UserProfileModel;
-
-import static android.app.Activity.RESULT_OK;
 
 
 public class RegisterFragment extends Fragment {
@@ -64,7 +57,7 @@ public class RegisterFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_register, container, false);
 
-        etEmail = view.findViewById(R.id.etEmail);
+        etEmail = view.findViewById(R.id.etEmailLog);
         etGoals = view.findViewById(R.id.etGoals);
         etPassword = view.findViewById(R.id.etPassword);
         etUsername = view.findViewById(R.id.etUsername);

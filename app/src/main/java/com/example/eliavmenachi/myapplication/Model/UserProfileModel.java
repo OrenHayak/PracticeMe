@@ -21,9 +21,12 @@ import java.util.List;
 public class UserProfileModel {
     public static UserProfileModel instance = new UserProfileModel();
     UserProfileModelFirebase modelFirebase;
+    private UserProfileAuth userAuthModel;
     private UserProfileModel(){
         modelFirebase = new UserProfileModelFirebase();
+        userAuthModel = new UserProfileAuth();
     }
+    UserProfile userProfile;
 
     public void cancellGetAllUserProfiles() {
         modelFirebase.cancellGetAllUserProfiles();
@@ -36,7 +39,7 @@ public class UserProfileModel {
         @Override
         protected void onActive() {
             super.onActive();
-            // new thread tsks
+            // new thread tasks
             // 1. get the UserProfiles list from the local DB
             UserProfileAsynchDao.getAll(new UserProfileAsynchDao.UserProfileAsynchDaoListener<List<UserProfile>>() {
                 @Override
@@ -96,6 +99,26 @@ public class UserProfileModel {
 
     public void saveUserProfile(UserProfile userProfile, UserProfileModel.SaveUserProfileListener listener) {
         modelFirebase.saveUserProfile(userProfile, listener);
+    }
+
+    public interface SignInListener {
+        void onSuccess();
+
+        void onFailure(String exceptionMessage);
+    }
+    public void signIn(final String email, final String password, final SignInListener listener) {
+        userAuthModel.signInWithEmailAndPassword(email, password, new UserProfileAuth.SignInCallback() {
+            @Override
+            public void onSuccess(String userID, String userName) {
+                userProfile = new UserProfile();
+                listener.onSuccess();
+            }
+
+            @Override
+            public void onFailure(String exceptionMessage) {
+                listener.onFailure(exceptionMessage);
+            }
+        });
     }
 
 }

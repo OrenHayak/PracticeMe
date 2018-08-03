@@ -18,4 +18,22 @@ public class UserProfileListViewModel extends ViewModel {
         return data;
     }
 
+    public interface SignInListener {
+        void onSuccess();
+
+        void onFailure(String exceptionMessage);
+    }
+    public void signIn(final String email, final String password, final SignInListener listener) {
+        UserProfileModel.instance.signIn(email, password, new UserProfileModel.SignInListener() {
+            @Override
+            public void onSuccess() {
+                listener.onSuccess();
+            }
+
+            @Override
+            public void onFailure(String exceptionMessage) {
+                listener.onFailure(exceptionMessage);
+            }
+        });
+    }
 }
