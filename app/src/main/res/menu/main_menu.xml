@@ -8,12 +8,6 @@
         android:title="Add" />
 
     <item
-        android:id="@+id/menu_profile"
-        android:icon="@android:drawable/ic_input_add"
-        android:showAsAction="ifRoom"
-        android:title="My Profile" />
-
-    <item
     android:id="@+id/menu_my_posts"
     android:icon="@android:drawable/ic_input_add"
     android:showAsAction="ifRoom"
