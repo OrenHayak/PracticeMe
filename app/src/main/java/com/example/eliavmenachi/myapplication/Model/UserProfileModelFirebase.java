@@ -94,10 +94,10 @@ public class UserProfileModelFirebase {
             public void onComplete(@NonNull Task<Void> task) {
                 if (!task.isSuccessful()) {
                     //String exception = task.getException().getMessage();
-                    callback.onDone();
+                    //callback.onDone();
                 } else {
-                    user.email = firebaseUser.getEmail();
-                    user.username = firebaseUser.getDisplayName();
+                    //user.email = firebaseUser.getEmail();
+                    //user.username = firebaseUser.getUid();
 
 
                     callback.onDone();

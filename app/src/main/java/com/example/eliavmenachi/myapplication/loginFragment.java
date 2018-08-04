@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,10 +46,10 @@ public class loginFragment extends Fragment {
         }
     }*/
 
-    EditText etUsername;
     EditText etPassword;
     EditText etEmail;
     Button btnSave;
+    Button btnRegister;
 
     @Override
     public void onAttach(Context context) {
@@ -61,7 +62,6 @@ public class loginFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 
-        etUsername = view.findViewById(R.id.etUserNameLog);
         etPassword = view.findViewById(R.id.etPasswordLog);
         etEmail = view.findViewById(R.id.etEmailLog);
 
@@ -85,12 +85,13 @@ public class loginFragment extends Fragment {
                         public void onSuccess() {
                             Toast.makeText(getActivity(), "Signed in successfully!", Toast.LENGTH_LONG).show();
 
-//                            Intent intent = new Intent();
-//                            intent.putExtra("SignIn", true);
-//                            getActivity().setResult(1);
-                            //getActivity().finish();
-//                            Intent intent = new Intent(LoginFragment.this.getContext(), SalesActivity.class);
-//                            startActivity(intent);
+
+
+                            StudentsListFragment allPostsFragments = new StudentsListFragment();
+                            FragmentTransaction tranAll = getActivity().getSupportFragmentManager().beginTransaction();
+                            tranAll.replace(R.id.main_container, allPostsFragments);
+                            tranAll.addToBackStack("tag");
+                            tranAll.commit();
                         }
 
                         @Override
@@ -99,6 +100,20 @@ public class loginFragment extends Fragment {
 
                         }
                     });
+            }
+        });
+
+
+        btnRegister = view.findViewById(R.id.btnregister);
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                RegisterFragment fragmentRegister = new RegisterFragment();
+                FragmentTransaction tranRegister = getActivity().getSupportFragmentManager().beginTransaction();
+                tranRegister.replace(R.id.main_container, fragmentRegister);
+                tranRegister.addToBackStack("tag");
+                tranRegister.commit();
             }
         });
 

@@ -16,6 +16,7 @@ import android.widget.EditText;
 public class MainActivity extends AppCompatActivity {
     EditText nameTv;
 
+
     final int REQUEST_WRITE_STORAGE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("TAG","my message .... ");
 
         if (savedInstanceState == null) {
-            StudentsListFragment fragment = new StudentsListFragment();
+            loginFragment fragment = new loginFragment();
             FragmentTransaction tran = getSupportFragmentManager().beginTransaction();
             tran.add(R.id.main_container, fragment);
                          tran.addToBackStack("");
@@ -77,22 +78,32 @@ public class MainActivity extends AppCompatActivity {
                 tran.commit();
                 return true;
 
-            case R.id.menu_register:
-                Log.d("TAG","menu register selected");
-                RegisterFragment fragmentRegister = new RegisterFragment();
-                FragmentTransaction tranRegister = getSupportFragmentManager().beginTransaction();
-                tranRegister.replace(R.id.main_container, fragmentRegister);
-                tranRegister.addToBackStack("tag");
-                tranRegister.commit();
+
+            case R.id.menu_all_posts:
+                Log.d("TAG","menu all posts selected");
+                StudentsListFragment allPostsFragments = new StudentsListFragment();
+                FragmentTransaction tranAll = getSupportFragmentManager().beginTransaction();
+                tranAll.replace(R.id.main_container, allPostsFragments);
+                tranAll.addToBackStack("tag");
+                tranAll.commit();
                 return true;
 
             case R.id.menu_login:
-                Log.d("TAG","menu register selected");
+                Log.d("TAG","menu login selected");
                 loginFragment loginfragment = new loginFragment();
                 FragmentTransaction tranLogin = getSupportFragmentManager().beginTransaction();
                 tranLogin.replace(R.id.main_container, loginfragment);
                 tranLogin.addToBackStack("tag");
                 tranLogin.commit();
+                return true;
+
+            case R.id.menu_register:
+                Log.d("TAG","menu login selected");
+                RegisterFragment registerfrag = new RegisterFragment();
+                FragmentTransaction tranReg = getSupportFragmentManager().beginTransaction();
+                tranReg.replace(R.id.main_container, registerfrag);
+                tranReg.addToBackStack("tag");
+                tranReg.commit();
                 return true;
         }
         return super.onOptionsItemSelected(item);
