@@ -97,14 +97,6 @@ public class MainActivity extends AppCompatActivity {
                 tranLogin.commit();
                 return true;
 
-            case R.id.menu_register:
-                Log.d("TAG","menu login selected");
-                RegisterFragment registerfrag = new RegisterFragment();
-                FragmentTransaction tranReg = getSupportFragmentManager().beginTransaction();
-                tranReg.replace(R.id.main_container, registerfrag);
-                tranReg.addToBackStack("tag");
-                tranReg.commit();
-                return true;
         }
         return super.onOptionsItemSelected(item);
     }

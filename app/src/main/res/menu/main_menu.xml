@@ -38,9 +38,4 @@
         android:showAsAction="ifRoom"
         android:title="Log In" />
 
-    <item
-        android:id="@+id/menu_register"
-        android:icon="@android:drawable/ic_input_add"
-        android:showAsAction="ifRoom"
-        android:title="Register" />
 </menu>
