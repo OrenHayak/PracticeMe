@@ -18,5 +18,8 @@ public interface ExerciseDao {
 
     @Delete
     void delete(Exercise exercise);
+
+    //@Query("SELECT * FROM Exercise where ownermail LIKE :userMail and  active = 1")
+    //List<Exercise> getExerciseByUserMail(String userMail);
 }
 

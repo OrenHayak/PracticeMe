@@ -17,6 +17,12 @@ public class StudentListViewModel extends ViewModel {
     }
 
 
+    public LiveData<List<Exercise>> getExerciseListByUserMail(String usermaile) {
+        Model.instance.InitUserMail(usermaile);
+        LiveData<List<Exercise>> results = Model.instance.getExerciseByUserMail(usermaile);
+
+        return results;
+    }
 }
 
 

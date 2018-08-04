@@ -11,6 +11,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -66,6 +67,41 @@ public class ModelFirebase {
             }
         });
     }
+
+
+
+    interface GetExerciseByUserMail {
+        public void onGetData(List<Exercise> data);
+    }
+
+    ValueEventListener eventListener4;
+
+    public void GetExerciseByUserMail(final String UserMail, final GetExerciseByUserMail listener) {
+        Query stRef = FirebaseDatabase.getInstance().getReference().child("exercises").orderByChild("ownermail").equalTo(UserMail);
+        eventListener4 = stRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                List<Exercise> stExercises = new LinkedList<>();
+                for (DataSnapshot stSnapshot : dataSnapshot.getChildren()) {
+                    Exercise currExercise = stSnapshot.getValue(Exercise.class);
+                    if ((currExercise.active) && (currExercise.ownermail.toString().trim().equalsIgnoreCase(UserMail.toString().trim()))) {
+                        stExercises.add(currExercise);
+                    }
+                }
+
+                listener.onGetData(stExercises);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
+
+
+
+
+
 
 
     //Managing Files

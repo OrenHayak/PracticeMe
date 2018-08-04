@@ -97,6 +97,65 @@ public class Model {
 
 
 
+
+
+
+
+
+
+    public class ExerciseListDataByUserMail extends MutableLiveData<List<Exercise>> {
+        String usermail = "";
+
+        @Override
+        protected void onActive() {
+
+            ExerciseAsynchDao.getAll(new ExerciseAsynchDao.ExerciseAsynchDaoListener<List<Exercise>>() {
+                @Override
+                public void onComplete(List<Exercise> data) {
+                    setValue(data);
+                    // 3. get the sale list from firebase
+                    modelFirebase.GetExerciseByUserMail(usermail, new ModelFirebase.GetExerciseByUserMail() {
+                        @Override
+                        public void onGetData(List<Exercise> data) {
+                            setValue(data);
+                        }
+                    });
+                }
+            });
+        }
+
+        @Override
+        protected void onInactive() {
+            super.onInactive();
+        }
+
+        public ExerciseListDataByUserMail() {
+            super();
+            setValue(new LinkedList());
+        }
+
+        public void InitUserMail(String usermaile) {
+            usermail = usermaile;
+        }
+    }
+
+    public ExerciseListDataByUserMail ExerciseListDataByUserMail = new ExerciseListDataByUserMail();
+
+    public LiveData<List<Exercise>> getExerciseByUserMail(String usermaile) {
+        return ExerciseListDataByUserMail;
+    }
+
+    public void InitUserMail(String usermaile) {
+        if (ExerciseListDataByUserMail == null) {
+            ExerciseListDataByUserMail = new ExerciseListDataByUserMail();
+        }
+
+        ExerciseListDataByUserMail.InitUserMail(usermaile);
+    }
+
+
+
+
     ////////////////////////////////////////////////////////
     //  HAndle Image Files
     ////////////////////////////////////////////////////////

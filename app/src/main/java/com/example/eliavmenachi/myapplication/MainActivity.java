@@ -78,6 +78,16 @@ public class MainActivity extends AppCompatActivity {
                 tran.commit();
                 return true;
 
+            case R.id.menu_my_posts:
+                Log.d("TAG","menu login selected");
+                StudentsListFragment mypostsfragment = new StudentsListFragment();
+                mypostsfragment.isbyuser = true;
+                FragmentTransaction tranmyposts = getSupportFragmentManager().beginTransaction();
+                tranmyposts.replace(R.id.main_container, mypostsfragment);
+                tranmyposts.addToBackStack("tag");
+                tranmyposts.commit();
+                return true;
+
 
             case R.id.menu_all_posts:
                 Log.d("TAG","menu all posts selected");
