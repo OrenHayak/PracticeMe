@@ -16,8 +16,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class loginFragment extends Fragment {
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_EMAILL = "ARG_EMAILL";
+    private static final String ARG_PASSWORDL = "ARG_PASSWORDL";
     UserProfileListViewModel userProfileListViewModel;
 
 
@@ -117,6 +117,19 @@ public class loginFragment extends Fragment {
             }
         });
 
+
+        if (savedInstanceState != null) {
+            String email = savedInstanceState.getString(ARG_EMAILL);
+            if (email != null) {
+                etEmail.setText(email);
+            }
+            String password = savedInstanceState.getString(ARG_PASSWORDL);
+            if (password != null) {
+                etPassword.setText(password);
+            }
+
+        }
+
         return view;
     }
 
@@ -129,6 +142,14 @@ public class loginFragment extends Fragment {
     @Override
     public void onDestroyView(){
         super.onDestroyView();
+    }
+
+
+    @Override
+    public void  onSaveInstanceState(Bundle bundle){
+        super.onSaveInstanceState(bundle);
+        bundle.putString(ARG_EMAILL, etEmail.getText().toString());
+        bundle.putString(ARG_PASSWORDL, etPassword.getText().toString());
     }
 
     // TODO: Rename method, update argument and hook method into UI event
