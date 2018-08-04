@@ -52,7 +52,10 @@ public class ModelFirebase {
 
                 for (DataSnapshot stSnapshot: dataSnapshot.getChildren()) {
                     Exercise exercise = stSnapshot.getValue(Exercise.class);
-                    exList.add(exercise);
+
+                    if (exercise.active == true) {
+                        exList.add(exercise);
+                    }
                 }
                 listener.onSuccess(exList);
             }

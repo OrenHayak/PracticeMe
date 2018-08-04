@@ -79,6 +79,15 @@ public class showDetailsFragments extends Fragment {
             }
         });
 
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                chosen.active = false;
+                Model.instance.addExercise(chosen);
+                getActivity().getSupportFragmentManager().popBackStack();
+            }
+        });
+
         tvDesc.setText(chosen.description);
         tvName.setText(chosen.id);
 
