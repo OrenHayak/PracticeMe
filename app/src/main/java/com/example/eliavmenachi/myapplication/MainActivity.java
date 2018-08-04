@@ -98,8 +98,8 @@ public class MainActivity extends AppCompatActivity {
                 tranAll.commit();
                 return true;
 
-            case R.id.menu_login:
-                Log.d("TAG","menu login selected");
+            case R.id.menu_out:
+                Log.d("TAG","menu out selected");
                 loginFragment loginfragment = new loginFragment();
                 FragmentTransaction tranLogin = getSupportFragmentManager().beginTransaction();
                 tranLogin.replace(R.id.main_container, loginfragment);
