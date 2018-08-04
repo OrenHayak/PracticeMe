@@ -4,14 +4,18 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.eliavmenachi.myapplication.Model.Exercise;
 import com.example.eliavmenachi.myapplication.Model.Model;
+import com.example.eliavmenachi.myapplication.Model.UserProfileAuth;
+import com.example.eliavmenachi.myapplication.Model.UserProfileModel;
 
 public class showDetailsFragments extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -23,6 +27,8 @@ public class showDetailsFragments extends Fragment {
     TextView tvName;
     TextView tvDesc;
     ImageView imgImage;
+    Button btnEdit;
+    Button btnDelete;
 
     public showDetailsFragments() {
         // Required empty public constructor
@@ -45,6 +51,18 @@ public class showDetailsFragments extends Fragment {
         tvName = view.findViewById(R.id.tvNoEditName);
         tvDesc = view.findViewById(R.id.tvNoEditDesc);
         imgImage = view.findViewById(R.id.imgNoEditImg);
+        btnEdit = view.findViewById(R.id.btnEditExercise);
+        btnDelete = view.findViewById(R.id.btnDeleteExercise);
+
+        // Check authorizations - If user is not the creator of exercise, do not permit delete and edit
+        String strLoginUserMail = UserProfileModel.instance.getCurrentUserMail();
+        Log.d("TAG","curr user:" + strLoginUserMail);
+        Log.d("TAG","chosen:" + chosen.ownermail);
+        if (!strLoginUserMail.toString().trim().equalsIgnoreCase(chosen.ownermail.toString().trim()))
+        {
+            btnDelete.setVisibility(View.GONE);
+            btnEdit.setVisibility(View.GONE);
+        }
 
         tvDesc.setText(chosen.description);
         tvName.setText(chosen.id);
