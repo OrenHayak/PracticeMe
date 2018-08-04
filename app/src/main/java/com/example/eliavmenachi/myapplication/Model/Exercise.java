@@ -13,6 +13,7 @@ public class Exercise {
     public String description;
     public String image;
     public boolean active;
+    public  String ownermail;
 
     public String getid() {
         return id;
@@ -26,6 +27,7 @@ public class Exercise {
     public boolean isActive() {
         return active;
     }
+    public String getownermail() {return ownermail; }
 
     public void setDescription(String name) {
         this.description = name;
@@ -36,4 +38,5 @@ public class Exercise {
     public void setActive(boolean act) {
         this.active = act;
     }
+    public void setownermail(String mail) {this.ownermail = mail;}
 }

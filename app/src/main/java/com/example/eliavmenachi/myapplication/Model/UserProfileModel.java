@@ -93,6 +93,14 @@ public class UserProfileModel {
         modelFirebase.addUserProfile(userProfile);
     }
 
+    public String getCurrentUserMail(){
+        if (userAuthModel.getCurrentUser() != null) {
+            return userAuthModel.getCurrentUser().getEmail();
+        }
+
+        return "";
+    }
+
     public interface SaveUserProfileListener{
         void onDone();
     }

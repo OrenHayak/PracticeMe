@@ -16,6 +16,8 @@ import android.widget.ProgressBar;
 
 import com.example.eliavmenachi.myapplication.Model.Exercise;
 import com.example.eliavmenachi.myapplication.Model.Model;
+import com.example.eliavmenachi.myapplication.Model.UserProfile;
+import com.example.eliavmenachi.myapplication.Model.UserProfileModel;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -58,6 +60,7 @@ public class NewStudentFragment extends Fragment {
                 st.description = nameEt.getText().toString();
                 st.id = idEt.getText().toString();
                 st.active = true;
+                st.ownermail = UserProfileModel.instance.getCurrentUserMail();
 
                 //save image
                 if (imageBitmap != null) {

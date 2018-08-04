@@ -6,7 +6,7 @@ import android.arch.persistence.room.RoomDatabase;
 
 import com.example.eliavmenachi.myapplication.MyApplication;
 
-@Database(entities = {Exercise.class,UserProfile.class}, version = 9)
+@Database(entities = {Exercise.class,UserProfile.class}, version = 10)
 abstract class AppLocalDbRepository extends RoomDatabase {
     public abstract ExerciseDao exerciseDao();
     public abstract UserProfileDao userprofileDao();
