@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,7 @@ public class NewStudentFragment extends Fragment {
     ImageView avatar;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     ProgressBar progress;
+    public Exercise exEdited;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,8 +49,30 @@ public class NewStudentFragment extends Fragment {
 
         nameEt = view.findViewById(R.id.new_student_name);
         idEt = view.findViewById(R.id.new_student_id);
+        avatar = view.findViewById(R.id.new_student_image);
         progress = view.findViewById(R.id.new_student_progress);
         progress . setVisibility(View.GONE);
+
+
+        if (exEdited != null)
+        {
+            nameEt.setText(exEdited.getDescription());
+            idEt.setText(exEdited.getid());
+
+            if ((exEdited.image != null) && (exEdited.image != "")) {
+                Model.instance.getImage(exEdited.image, new Model.GetImageListener() {
+                    @Override
+                    public void onDone(Bitmap imageBitmap) {
+
+                        if (imageBitmap != null) {
+                            avatar.setImageBitmap(imageBitmap);
+                        }
+                    }
+                });
+            }
+
+            idEt.setEnabled(false);
+        }
 
         Button save = view.findViewById(R.id.new_student_save);
         save.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +95,13 @@ public class NewStudentFragment extends Fragment {
                             st.image = url;
 
                             Model.instance.addExercise(st);
-                            getActivity().getSupportFragmentManager().popBackStack();
+                            //getActivity().getSupportFragmentManager().popBackStack();
+
+                            StudentsListFragment allPostsFragments = new StudentsListFragment();
+                            FragmentTransaction tranAll = getActivity().getSupportFragmentManager().beginTransaction();
+                            tranAll.replace(R.id.main_container, allPostsFragments);
+                            tranAll.addToBackStack("tag");
+                            tranAll.commit();
                         }
                     });
                 }
