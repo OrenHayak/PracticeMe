@@ -1,7 +1,6 @@
 package com.example.eliavmenachi.myapplication;
 
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -15,8 +14,6 @@ import android.widget.TextView;
 
 import com.example.eliavmenachi.myapplication.Model.Exercise;
 import com.example.eliavmenachi.myapplication.Model.Model;
-import com.example.eliavmenachi.myapplication.Model.UserProfile;
-import com.example.eliavmenachi.myapplication.Model.UserProfileAuth;
 import com.example.eliavmenachi.myapplication.Model.UserProfileModel;
 
 public class showDetailsFragments extends Fragment {
@@ -70,7 +67,7 @@ public class showDetailsFragments extends Fragment {
             @Override
             public void onClick(View view) {
 
-                NewStudentFragment fragmentEdit = new NewStudentFragment();
+                NewExerciseFragment fragmentEdit = new NewExerciseFragment();
                 fragmentEdit.exEdited = chosen;
                 FragmentTransaction tranEdit = getActivity().getSupportFragmentManager().beginTransaction();
                 tranEdit.replace(R.id.main_container, fragmentEdit);

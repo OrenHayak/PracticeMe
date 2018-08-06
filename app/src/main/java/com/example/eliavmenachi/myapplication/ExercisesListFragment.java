@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -26,7 +25,7 @@ import com.example.eliavmenachi.myapplication.Model.UserProfileModel;
 import java.util.List;
 
 
-public class StudentsListFragment extends Fragment {
+public class ExercisesListFragment extends Fragment {
     //private OnFragmentInteractionListener mListener;
 
     ListView list;
@@ -35,8 +34,8 @@ public class StudentsListFragment extends Fragment {
     StudentListViewModel dataModel;
     public boolean isbyuser;
 
-    public static StudentsListFragment newInstance() {
-        StudentsListFragment fragment = new StudentsListFragment();
+    public static ExercisesListFragment newInstance() {
+        ExercisesListFragment fragment = new ExercisesListFragment();
         return fragment;
     }
 

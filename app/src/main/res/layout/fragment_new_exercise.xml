@@ -5,7 +5,7 @@
     android:id="@+id/progressIndiucator"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.eliavmenachi.myapplication.NewStudentFragment">
+    tools:context="com.example.eliavmenachi.myapplication.NewExerciseFragment">
 
     <ImageView
         android:id="@+id/new_student_image"

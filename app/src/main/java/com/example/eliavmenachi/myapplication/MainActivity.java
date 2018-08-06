@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.menu_add:
                 Log.d("TAG","menu add selected");
-                NewStudentFragment fragment = new NewStudentFragment();
+                NewExerciseFragment fragment = new NewExerciseFragment();
                 FragmentTransaction tran = getSupportFragmentManager().beginTransaction();
                 tran.replace(R.id.main_container, fragment);
                 tran.addToBackStack("tag");
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.menu_my_posts:
                 Log.d("TAG","menu login selected");
-                StudentsListFragment mypostsfragment = new StudentsListFragment();
+                ExercisesListFragment mypostsfragment = new ExercisesListFragment();
                 mypostsfragment.isbyuser = true;
                 FragmentTransaction tranmyposts = getSupportFragmentManager().beginTransaction();
                 tranmyposts.replace(R.id.main_container, mypostsfragment);
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.menu_all_posts:
                 Log.d("TAG","menu all posts selected");
-                StudentsListFragment allPostsFragments = new StudentsListFragment();
+                ExercisesListFragment allPostsFragments = new ExercisesListFragment();
                 FragmentTransaction tranAll = getSupportFragmentManager().beginTransaction();
                 tranAll.replace(R.id.main_container, allPostsFragments);
                 tranAll.addToBackStack("tag");

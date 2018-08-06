@@ -17,7 +17,6 @@ import android.widget.ProgressBar;
 
 import com.example.eliavmenachi.myapplication.Model.Exercise;
 import com.example.eliavmenachi.myapplication.Model.Model;
-import com.example.eliavmenachi.myapplication.Model.UserProfile;
 import com.example.eliavmenachi.myapplication.Model.UserProfileModel;
 
 import static android.app.Activity.RESULT_OK;
@@ -26,11 +25,11 @@ import static android.app.Activity.RESULT_OK;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NewStudentFragment extends Fragment {
+public class NewExerciseFragment extends Fragment {
     private static final String ARG_NAME = "ARG_NAME";
     private static final String ARG_ID = "ARG_ID";
 
-    public NewStudentFragment() {
+    public NewExerciseFragment() {
         // Required empty public constructor
     }
 
@@ -45,7 +44,7 @@ public class NewStudentFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_new_student, container, false);
+        View view = inflater.inflate(R.layout.fragment_new_exercise, container, false);
 
         nameEt = view.findViewById(R.id.new_student_name);
         idEt = view.findViewById(R.id.new_student_id);
@@ -97,7 +96,7 @@ public class NewStudentFragment extends Fragment {
                             Model.instance.addExercise(st);
                             //getActivity().getSupportFragmentManager().popBackStack();
 
-                            StudentsListFragment allPostsFragments = new StudentsListFragment();
+                            ExercisesListFragment allPostsFragments = new ExercisesListFragment();
                             FragmentTransaction tranAll = getActivity().getSupportFragmentManager().beginTransaction();
                             tranAll.replace(R.id.main_container, allPostsFragments);
                             tranAll.addToBackStack("tag");
