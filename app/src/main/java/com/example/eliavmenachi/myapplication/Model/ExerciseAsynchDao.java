@@ -32,7 +32,7 @@ public class ExerciseAsynchDao {
     }
 
 
-    /* static public void getExerciseByUserMail(final String userMail, final ExerciseAsynchDaoListener<List<Exercise>> listener) {
+     static public void getExerciseByUserMail(final String userMail, final ExerciseAsynchDaoListener<List<Exercise>> listener) {
         class MyAsynchTask extends AsyncTask<String, String, List<Exercise>> {
             @Override
             protected List<Exercise> doInBackground(String... strings) {
@@ -56,7 +56,7 @@ public class ExerciseAsynchDao {
 
         MyAsynchTask task = new MyAsynchTask();
         task.execute();
-    } */
+    }
 
 
 

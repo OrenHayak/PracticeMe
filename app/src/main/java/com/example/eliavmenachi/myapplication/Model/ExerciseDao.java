@@ -10,7 +10,7 @@ import java.util.List;
 
 @Dao
 public interface ExerciseDao {
-    @Query("select * from Exercise")
+    @Query("select * from Exercise where  active = 1")
     List<Exercise> getAll();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -19,7 +19,7 @@ public interface ExerciseDao {
     @Delete
     void delete(Exercise exercise);
 
-    //@Query("SELECT * FROM Exercise where ownermail LIKE :userMail and  active = 1")
-    //List<Exercise> getExerciseByUserMail(String userMail);
+    @Query("SELECT * FROM Exercise where ownermail LIKE :userMail and  active = 1")
+    List<Exercise> getExerciseByUserMail(String userMail);
 }
 

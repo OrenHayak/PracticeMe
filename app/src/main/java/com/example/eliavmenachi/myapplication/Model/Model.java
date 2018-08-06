@@ -95,25 +95,16 @@ public class Model {
         modelFirebase.addExercise(exercise);
     }
 
-
-
-
-
-
-
-
-
     public class ExerciseListDataByUserMail extends MutableLiveData<List<Exercise>> {
         String usermail = "";
 
         @Override
         protected void onActive() {
 
-            ExerciseAsynchDao.getAll(new ExerciseAsynchDao.ExerciseAsynchDaoListener<List<Exercise>>() {
+            ExerciseAsynchDao.getExerciseByUserMail(usermail, new ExerciseAsynchDao.ExerciseAsynchDaoListener<List<Exercise>>() {
                 @Override
                 public void onComplete(List<Exercise> data) {
                     setValue(data);
-                    // 3. get the sale list from firebase
                     modelFirebase.GetExerciseByUserMail(usermail, new ModelFirebase.GetExerciseByUserMail() {
                         @Override
                         public void onGetData(List<Exercise> data) {
