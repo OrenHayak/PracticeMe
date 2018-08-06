@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 public class loginFragment extends Fragment {
@@ -19,36 +20,15 @@ public class loginFragment extends Fragment {
     private static final String ARG_PASSWORDL = "ARG_PASSWORDL";
     UserProfileListViewModel userProfileListViewModel;
 
-
-  //  private OnFragmentInteractionListener mListener;
-
     public loginFragment() {
-        // Required empty public constructor
-    }
 
-    /*// TODO: Rename and change types and number of parameters
-    public static loginFragment newInstance(String param1, String param2) {
-        loginFragment fragment = new loginFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
     }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }*/
 
     EditText etPassword;
     EditText etEmail;
     Button btnSave;
     Button btnRegister;
+    ProgressBar pbLogin;
 
     @Override
     public void onAttach(Context context) {
@@ -63,16 +43,23 @@ public class loginFragment extends Fragment {
 
         etPassword = view.findViewById(R.id.etPasswordLog);
         etEmail = view.findViewById(R.id.etEmailLog);
+        pbLogin = view.findViewById(R.id.pbLogin);
+
+        pbLogin.setVisibility(View.GONE);
 
         btnSave = view.findViewById(R.id.btnSubmitLog);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                pbLogin.setVisibility(View.VISIBLE);
+
                 String strEmail = etEmail.getText().toString();
                 String strPassword = etPassword.getText().toString();
 
+                    // TODO f.o
                     try {
-                        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                        //InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                         //imm.hideSoftInputFromWindow(mainLayout.getWindowToken(), 0);
 
                     } catch (Exception e) {
@@ -95,6 +82,7 @@ public class loginFragment extends Fragment {
 
                         @Override
                         public void onFailure(String exceptionMessage) {
+                            pbLogin.setVisibility(View.GONE);
                             Toast.makeText(getActivity(), "One of the fields above isn't valid.", Toast.LENGTH_LONG).show();
 
                         }

@@ -28,6 +28,7 @@ import static android.app.Activity.RESULT_OK;
 public class NewExerciseFragment extends Fragment {
     private static final String ARG_NAME = "ARG_NAME";
     private static final String ARG_ID = "ARG_ID";
+    private static final String ARG_IMG = "ARG_IMG";
 
     public NewExerciseFragment() {
         // Required empty public constructor
@@ -127,6 +128,11 @@ public class NewExerciseFragment extends Fragment {
             if (id != null) {
                 idEt.setText(id);
             }
+
+            Bitmap imgBitmap = savedInstanceState.getParcelable(ARG_IMG);
+            if (imgBitmap != null) {
+                avatar.setImageBitmap(imgBitmap);
+            }
         }
 
         Button editImage = view.findViewById(R.id.new_student_img_btn);
@@ -166,6 +172,7 @@ public class NewExerciseFragment extends Fragment {
         super.onSaveInstanceState(bundle);
         bundle.putString(ARG_NAME, nameEt.getText().toString());
         bundle.putString(ARG_ID, idEt.getText().toString());
+        bundle.putParcelable(ARG_IMG, imageBitmap);
     }
 
 }

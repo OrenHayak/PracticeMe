@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import com.example.eliavmenachi.myapplication.Model.UserProfile;
 import com.example.eliavmenachi.myapplication.Model.UserProfileModel;
@@ -32,6 +33,7 @@ public class RegisterFragment extends Fragment {
     EditText etName;
     EditText etGoals;
     Button btnSave;
+    ProgressBar pbRegister;
 
     /*public static RegisterFragment newInstance(String param1, String param2) {
         RegisterFragment fragment = new RegisterFragment();
@@ -62,11 +64,16 @@ public class RegisterFragment extends Fragment {
         etPassword = view.findViewById(R.id.etPassword);
         etUsername = view.findViewById(R.id.etUsername);
         etName = view.findViewById(R.id.etName);
+        pbRegister = view.findViewById(R.id.pbRegister);
+
+        pbRegister.setVisibility(View.GONE);
 
         btnSave = view.findViewById(R.id.btnSave);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                pbRegister.setVisibility(View.VISIBLE);
 
                 final UserProfile userProfile = new UserProfile();
                 userProfile.password = etPassword.getText().toString();
