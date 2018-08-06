@@ -1,6 +1,7 @@
 package com.example.eliavmenachi.myapplication;
 
 import android.Manifest;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,12 +11,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
-
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
     EditText nameTv;
-
+    UserProfileListViewModel userProfileListViewModel;
 
     final int REQUEST_WRITE_STORAGE = 1;
     @Override
@@ -100,6 +101,18 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.menu_out:
                 Log.d("TAG","menu out selected");
+
+                userProfileListViewModel = ViewModelProviders.of(this).get(UserProfileListViewModel.class);
+                userProfileListViewModel.signOut(new UserProfileListViewModel.SignOutListener(){
+                    @Override
+                    public void onSuccess(){
+                        Toast.makeText(MainActivity.this, "User Logged out succesfully!", Toast.LENGTH_LONG).show();
+                    }
+                    @Override
+                    public void onFailure(String exceptionMessage){
+
+                    }
+                                                 });
                 loginFragment loginfragment = new loginFragment();
                 FragmentTransaction tranLogin = getSupportFragmentManager().beginTransaction();
                 tranLogin.replace(R.id.main_container, loginfragment);

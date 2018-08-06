@@ -129,4 +129,20 @@ public class UserProfileModel {
         });
     }
 
+    public interface SignOutListener {
+        void onSuccess();
+
+        void onFailure(String exceptionMessage);
+    }
+    public void signOut(final SignOutListener listener)
+    {
+        userAuthModel.signOut();
+        if (userAuthModel.getCurrentUser() == null){
+            Log.d("USERNAME", "User has logged out");
+        }
+        else {
+            Log.d("USERNAME", userAuthModel.getCurrentUser().getEmail().toString());
+        }
+    }
+
 }

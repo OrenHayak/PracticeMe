@@ -36,4 +36,23 @@ public class UserProfileListViewModel extends ViewModel {
             }
         });
     }
+
+    public interface SignOutListener {
+        void onSuccess();
+
+        void onFailure(String exceptionMessage);
+    }
+    public void signOut(final SignOutListener listener) {
+        UserProfileModel.instance.signOut(new UserProfileModel.SignOutListener() {
+            @Override
+            public void onSuccess() {
+                listener.onSuccess();
+            }
+
+            @Override
+            public void onFailure(String exceptionMessage) {
+                listener.onFailure(exceptionMessage);
+            }
+        });
+    }
 }
