@@ -49,7 +49,7 @@ public class NewExerciseFragment extends Fragment {
 
         nameEt = view.findViewById(R.id.new_student_name);
         idEt = view.findViewById(R.id.new_student_id);
-        avatar = view.findViewById(R.id.new_student_image);
+        avatar = view.findViewById(R.id.new_exercise_image);
         progress = view.findViewById(R.id.new_student_progress);
         progress . setVisibility(View.GONE);
 
@@ -148,6 +148,7 @@ public class NewExerciseFragment extends Fragment {
             Bitmap imgBitmap = savedInstanceState.getParcelable(ARG_IMG);
             if (imgBitmap != null) {
                 avatar.setImageBitmap(imgBitmap);
+                imageBitmap = imgBitmap;
             }
         }
 
@@ -163,7 +164,7 @@ public class NewExerciseFragment extends Fragment {
                 }
             }
         });
-        avatar = view.findViewById(R.id.new_student_image);
+        avatar = view.findViewById(R.id.new_exercise_image);
         return view;
     }
 

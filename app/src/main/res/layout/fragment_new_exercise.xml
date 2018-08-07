@@ -8,7 +8,7 @@
     tools:context="com.example.eliavmenachi.myapplication.NewExerciseFragment">
 
     <ImageView
-        android:id="@+id/new_student_image"
+        android:id="@+id/new_exercise_image"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginStart="32dp"
@@ -34,7 +34,7 @@
         android:layout_marginTop="44dp"
         android:text="Exercise Name:"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-        app:layout_constraintTop_toBottomOf="@+id/new_student_image"
+        app:layout_constraintTop_toBottomOf="@+id/new_exercise_image"
         tools:layout_editor_absoluteX="16dp" />
 
     <EditText
@@ -97,8 +97,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
         android:text="edit image"
-        app:layout_constraintBottom_toBottomOf="@+id/new_student_image"
-        app:layout_constraintStart_toEndOf="@+id/new_student_image" />
+        app:layout_constraintBottom_toBottomOf="@+id/new_exercise_image"
+        app:layout_constraintStart_toEndOf="@+id/new_exercise_image" />
 
     <ProgressBar
         android:id="@+id/new_student_progress"
@@ -110,6 +110,6 @@
         android:indeterminate="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.912"
-        app:layout_constraintStart_toEndOf="@+id/new_student_image"
+        app:layout_constraintStart_toEndOf="@+id/new_exercise_image"
         app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>
