@@ -86,6 +86,7 @@ public class NewExerciseFragment extends Fragment {
                 st.active = true;
                 st.ownermail = UserProfileModel.instance.getCurrentUserMail();
 
+
                 //save image
                 if (imageBitmap != null) {
                     Model.instance.saveImage(imageBitmap, new Model.SaveImageListener() {
@@ -95,7 +96,7 @@ public class NewExerciseFragment extends Fragment {
                             st.image = url;
 
                             Model.instance.addExercise(st);
-                            //getActivity().getSupportFragmentManager().popBackStack();
+
 
                             ExercisesListFragment allPostsFragments = new ExercisesListFragment();
                             FragmentTransaction tranAll = getActivity().getSupportFragmentManager().beginTransaction();
@@ -105,7 +106,22 @@ public class NewExerciseFragment extends Fragment {
                         }
                     });
                 }
+                else
+                {
+                    if (exEdited != null)
+                    {
+                        st.image = exEdited.image;
+                    }
 
+
+                    Model.instance.addExercise(st);
+
+                    ExercisesListFragment allPostsFragments = new ExercisesListFragment();
+                    FragmentTransaction tranAll = getActivity().getSupportFragmentManager().beginTransaction();
+                    tranAll.replace(R.id.main_container, allPostsFragments);
+                    tranAll.addToBackStack("tag");
+                    tranAll.commit();
+                }
 
             }
         });

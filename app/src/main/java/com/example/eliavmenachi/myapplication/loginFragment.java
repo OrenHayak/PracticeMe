@@ -57,14 +57,7 @@ public class loginFragment extends Fragment {
                 String strEmail = etEmail.getText().toString();
                 String strPassword = etPassword.getText().toString();
 
-                    // TODO f.o
-                    try {
-                        //InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                        //imm.hideSoftInputFromWindow(mainLayout.getWindowToken(), 0);
 
-                    } catch (Exception e) {
-
-                    }
 
                 userProfileListViewModel.signIn(strEmail, strPassword, new UserProfileListViewModel.SignInListener() {
                         @Override
