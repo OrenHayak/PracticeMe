@@ -112,7 +112,6 @@ public class loginFragment extends Fragment {
 
         }
 
-
         etEmail.requestFocus();
         return view;
     }
