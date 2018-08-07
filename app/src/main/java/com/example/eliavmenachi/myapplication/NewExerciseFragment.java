@@ -78,51 +78,50 @@ public class NewExerciseFragment extends Fragment {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                progress . setVisibility(View.VISIBLE);
 
-                final Exercise st = new Exercise();
-                st.description = nameEt.getText().toString();
-                st.id = idEt.getText().toString();
-                st.active = true;
-                st.ownermail = UserProfileModel.instance.getCurrentUserMail();
+                if (isInputValid()) {
+                    progress.setVisibility(View.VISIBLE);
 
-
-                //save image
-                if (imageBitmap != null) {
-                    Model.instance.saveImage(imageBitmap, new Model.SaveImageListener() {
-                        @Override
-                        public void onDone(String url) {
-                            //save student obj
-                            st.image = url;
-
-                            Model.instance.addExercise(st);
+                    final Exercise st = new Exercise();
+                    st.description = nameEt.getText().toString();
+                    st.id = idEt.getText().toString();
+                    st.active = true;
+                    st.ownermail = UserProfileModel.instance.getCurrentUserMail();
 
 
-                            ExercisesListFragment allPostsFragments = new ExercisesListFragment();
-                            FragmentTransaction tranAll = getActivity().getSupportFragmentManager().beginTransaction();
-                            tranAll.replace(R.id.main_container, allPostsFragments);
-                            tranAll.addToBackStack("tag");
-                            tranAll.commit();
+                    //save image
+                    if (imageBitmap != null) {
+                        Model.instance.saveImage(imageBitmap, new Model.SaveImageListener() {
+                            @Override
+                            public void onDone(String url) {
+                                //save student obj
+                                st.image = url;
+
+                                Model.instance.addExercise(st);
+
+
+                                ExercisesListFragment allPostsFragments = new ExercisesListFragment();
+                                FragmentTransaction tranAll = getActivity().getSupportFragmentManager().beginTransaction();
+                                tranAll.replace(R.id.main_container, allPostsFragments);
+                                tranAll.addToBackStack("tag");
+                                tranAll.commit();
+                            }
+                        });
+                    } else {
+                        if (exEdited != null) {
+                            st.image = exEdited.image;
                         }
-                    });
-                }
-                else
-                {
-                    if (exEdited != null)
-                    {
-                        st.image = exEdited.image;
+
+
+                        Model.instance.addExercise(st);
+
+                        ExercisesListFragment allPostsFragments = new ExercisesListFragment();
+                        FragmentTransaction tranAll = getActivity().getSupportFragmentManager().beginTransaction();
+                        tranAll.replace(R.id.main_container, allPostsFragments);
+                        tranAll.addToBackStack("tag");
+                        tranAll.commit();
                     }
-
-
-                    Model.instance.addExercise(st);
-
-                    ExercisesListFragment allPostsFragments = new ExercisesListFragment();
-                    FragmentTransaction tranAll = getActivity().getSupportFragmentManager().beginTransaction();
-                    tranAll.replace(R.id.main_container, allPostsFragments);
-                    tranAll.addToBackStack("tag");
-                    tranAll.commit();
                 }
-
             }
         });
 
@@ -192,4 +191,16 @@ public class NewExerciseFragment extends Fragment {
         bundle.putParcelable(ARG_IMG, imageBitmap);
     }
 
+    private boolean isInputValid(){
+        boolean isValid = true;
+
+        if (idEt.getText().toString().isEmpty())
+        {
+            isValid = false;
+            idEt.requestFocus();
+            idEt.setError("Please insert exercise name");
+        }
+
+        return isValid;
+    }
 }
