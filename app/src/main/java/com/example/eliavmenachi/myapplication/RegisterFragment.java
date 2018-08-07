@@ -180,7 +180,6 @@ public class RegisterFragment extends Fragment {
             etName.setError("Please insert your name");
         }
 
-
         return isValid;
     }
 }
