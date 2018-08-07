@@ -48,22 +48,23 @@ public class loginFragment extends Fragment {
         pbLogin.setVisibility(View.GONE);
 
         btnSave = view.findViewById(R.id.btnSubmitLog);
+
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                pbLogin.setVisibility(View.VISIBLE);
+                if (isInputValid()) {
 
-                String strEmail = etEmail.getText().toString();
-                String strPassword = etPassword.getText().toString();
+                    pbLogin.setVisibility(View.VISIBLE);
+
+                    String strEmail = etEmail.getText().toString();
+                    String strPassword = etPassword.getText().toString();
 
 
-
-                userProfileListViewModel.signIn(strEmail, strPassword, new UserProfileListViewModel.SignInListener() {
+                    userProfileListViewModel.signIn(strEmail, strPassword, new UserProfileListViewModel.SignInListener() {
                         @Override
                         public void onSuccess() {
                             Toast.makeText(getActivity(), "Signed in successfully!", Toast.LENGTH_LONG).show();
-
 
 
                             ExercisesListFragment allPostsFragments = new ExercisesListFragment();
@@ -80,6 +81,7 @@ public class loginFragment extends Fragment {
 
                         }
                     });
+                }
             }
         });
 
@@ -110,6 +112,8 @@ public class loginFragment extends Fragment {
 
         }
 
+
+        etEmail.requestFocus();
         return view;
     }
 
@@ -132,42 +136,22 @@ public class loginFragment extends Fragment {
         bundle.putString(ARG_PASSWORDL, etPassword.getText().toString());
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    //public void onButtonPressed(Uri uri) {
-      //  if (mListener != null) {
-        //    mListener.onFragmentInteraction(uri);
-       // }
-  //  }
+private  boolean isInputValid(){
 
-   // @Override
-   // public void onAttach(Context context) {
-    //    super.onAttach(context);
-      //  if (context instanceof OnFragmentInteractionListener) {
-      //      mListener = (OnFragmentInteractionListener) context;
-     //   } else {
-       //     throw new RuntimeException(context.toString()
-           //         + " must implement OnFragmentInteractionListener");
-      //  }
-    //}
+        boolean isValid = true;
 
-   // @Override
-   // public void onDetach() {
-      // super.onDetach();
-  //      mListener = null;
-   // }
+        if (etEmail.getText().toString().isEmpty()){
+            isValid = false;
+            etEmail.requestFocus();
+            etEmail.setError("Please insert E-mail address");
+        }
+        else if (etPassword.getText().toString().isEmpty()) {
+            isValid = false;
+            etPassword.requestFocus();
+            etPassword.setError("Please insert password");
+        }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-   // public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-       // void onFragmentInteraction(Uri uri);
-   // }
+        return isValid;
+}
+
 }
