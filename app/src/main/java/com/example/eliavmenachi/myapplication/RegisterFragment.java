@@ -73,7 +73,10 @@ public class RegisterFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                pbRegister.setVisibility(View.VISIBLE);
+                if (isInputValid())
+                {
+
+                    pbRegister.setVisibility(View.VISIBLE);
 
                 final UserProfile userProfile = new UserProfile();
                 userProfile.password = etPassword.getText().toString();
@@ -83,14 +86,16 @@ public class RegisterFragment extends Fragment {
                 userProfile.name = etName.getText().toString();
 
 
-                    UserProfileModel.instance.saveUserProfile(userProfile, new UserProfileModel.SaveUserProfileListener() {
-                        @Override
-                        public void onDone() {
+                UserProfileModel.instance.saveUserProfile(userProfile, new UserProfileModel.SaveUserProfileListener() {
+                    @Override
+                    public void onDone() {
 
-                            UserProfileModel.instance.addUserProfile(userProfile);
-                            getActivity().getSupportFragmentManager().popBackStack();
-                        }
-                    });
+                        UserProfileModel.instance.addUserProfile(userProfile);
+                        getActivity().getSupportFragmentManager().popBackStack();
+                    }
+                });
+
+            }
             }
         });
 
@@ -141,50 +146,41 @@ public class RegisterFragment extends Fragment {
         bundle.putString(ARG_GOALS, etGoals.getText().toString());
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    /*public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+    private boolean isInputValid(){
+        boolean isValid = true;
+
+        if (etUsername.getText().toString().isEmpty()) {
+            isValid = false;
+            etUsername.requestFocus();
+            etUsername.setError("Please insert username");
         }
+        else if (etPassword.getText().toString().isEmpty()) {
+            isValid = false;
+            etPassword.requestFocus();
+            etPassword.setError("Please insert password");
+        }
+        else if (etPassword.getText().toString().length() < 6) {
+            isValid = false;
+            etPassword.requestFocus();
+            etPassword.setError("Please insert password with at least 6 characters");
+        }
+        else if (etEmail.getText().toString().isEmpty()){
+            isValid = false;
+            etEmail.requestFocus();
+            etEmail.setError("Please insert E-mail address");
+        }
+        else if (!(etEmail.getText().toString().contains("@") &&  etEmail.getText().toString().contains(".com"))){
+            isValid = false;
+            etEmail.requestFocus();
+            etEmail.setError("Please insert correct E-mail address");
+        }
+        else if (etName.getText().toString().isEmpty()) {
+            isValid = false;
+            etName.requestFocus();
+            etName.setError("Please insert your name");
+        }
+
+
+        return isValid;
     }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }*/
-
-    /*@Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }*/
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    /*public interface OnFragmentInteractionListener {
-        void onFragmentInteraction(Uri uri);
-    }*/
-
-
-    // TODO - look what this method does.
-        /*@Override
-        public void  onSaveInstanceState(Bundle bundle){
-            super.onSaveInstanceState(bundle);
-            bundle.putString(ARG_NAME, nameEt.getText().toString());
-            bundle.putString(ARG_ID, idEt.getText().toString());
-        }*/
 }
