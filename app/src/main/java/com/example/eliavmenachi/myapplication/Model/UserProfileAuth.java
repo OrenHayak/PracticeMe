@@ -37,59 +37,7 @@ public class UserProfileAuth {
                     });
         }
 
-        /*public interface CreateUserCallback {
-            void onSuccess(UserProfile userProfile;
 
-            void onFailure(String exceptionMessage);
-        }*/
-
-        /*public void createUser(final UserProfile userProfile,
-                               final String email,
-                               final String password,
-                               final CreateUserCallback callback) {
-            FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (!task.isSuccessful()) {
-                        String exception = task.getException().getMessage();
-                        callback.onFailure("Registration has failed: " + exception);
-                        //callback.onFailure("Registration has failed: " + exception);
-                    } else {
-                        final FirebaseUser firebaseUser = task.getResult().getUser();
-
-                        updateUserProfileAfterCreate(firebaseUser, userProfile, callback);
-                    }
-                }
-            });
-        }*/
-
-        /*private void updateUserProfileAfterCreate(final FirebaseUser firebaseUser,
-                                                  final UserProfile userProfile,
-                                                  final CreateUserCallback callback) {
-            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                    .setDisplayName(userProfile.username)
-                    .build();
-
-            firebaseUser.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if (!task.isSuccessful()) {
-                        String exception = task.getException().getMessage();
-                        callback.onFailure("Updating the user's profile has failed: " + exception);
-                    } else {
-                        // Todo Check with Oren if it's the username actually
-                        userProfile.username = firebaseUser.getUid();
-//                    user.email = firebaseUser.getEmail();
-                        userProfile.username = userProfile.username;
-                        userProfile.name = userProfile.name;
-
-                        callback.onSuccess(userProfile);
-                        // TODO: CALL from user model to firebase
-                        //UserModelFirebase.addUser()
-                    }
-                }
-            });
-        }*/
 
         public void signOut() {
             FirebaseAuth.getInstance().signOut();

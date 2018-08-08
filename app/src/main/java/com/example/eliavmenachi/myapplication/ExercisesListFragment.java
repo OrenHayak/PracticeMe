@@ -162,11 +162,11 @@ public class ExercisesListFragment extends Fragment {
 
             final ImageView avatarView = view.findViewById(R.id.stListItem_avatar);
 
-            //cb.setTag(i);
+
 
             nameTv.setText(exercise.description);
             idTv.setText(exercise.id);
-            //cb.setChecked(s.checked);
+
             avatarView.setImageResource(R.drawable.practice);
             avatarView.setTag(exercise.id);
             if (exercise.image != null){
