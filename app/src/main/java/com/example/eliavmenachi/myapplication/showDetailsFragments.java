@@ -17,8 +17,7 @@ import com.example.eliavmenachi.myapplication.Model.Model;
 import com.example.eliavmenachi.myapplication.Model.UserProfileModel;
 
 public class showDetailsFragments extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     public Exercise chosen;
@@ -37,9 +36,7 @@ public class showDetailsFragments extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//            studentId = getArguments().getString(ARG_PARAM1);
-//        }
+
     }
 
     @Override

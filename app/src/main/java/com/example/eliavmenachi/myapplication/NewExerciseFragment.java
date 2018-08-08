@@ -22,9 +22,7 @@ import com.example.eliavmenachi.myapplication.Model.UserProfileModel;
 import static android.app.Activity.RESULT_OK;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class NewExerciseFragment extends Fragment {
     private static final String ARG_NAME = "ARG_NAME";
     private static final String ARG_ID = "ARG_ID";

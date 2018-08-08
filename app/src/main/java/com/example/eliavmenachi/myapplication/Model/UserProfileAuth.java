@@ -13,16 +13,6 @@ public class UserProfileAuth {
 
 
         public FirebaseUser getCurrentUser() {
-            //FirebaseUser firebaseUser =
-//        User user = null;
-//
-//        if (firebaseUser != null) {
-//            user = new User();
-//            user.id = firebaseUser.getUid();
-//            user.username = firebaseUser.getDisplayName();
-//            user.email = firebaseUser.getEmail();
-//        }
-
             return FirebaseAuth.getInstance().getCurrentUser();
         }
 

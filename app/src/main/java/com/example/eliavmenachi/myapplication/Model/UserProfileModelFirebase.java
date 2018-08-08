@@ -93,16 +93,11 @@ public class UserProfileModelFirebase {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (!task.isSuccessful()) {
-                    //String exception = task.getException().getMessage();
-                    //callback.onDone();
                 } else {
-                    //user.email = firebaseUser.getEmail();
-                    //user.username = firebaseUser.getUid();
 
-
+                    
                     callback.onDone();
-                    // TODO: CALL from user model to firebase
-                    //UserModelFirebase.addUser()
+
                 }
             }
         });

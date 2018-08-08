@@ -152,22 +152,14 @@ public class ExercisesListFragment extends Fragment {
 
             if (view == null){
                 view = LayoutInflater.from(getActivity()).inflate(R.layout.student_list_item,null);
-                //final CheckBox cb = view.findViewById(R.id.stListItem_check_cb);
-                //cb.setOnClickListener(new View.OnClickListener() {
-                    //@Override
-                   // public void onClick(View view) {
-                        //int index = (int) cb.getTag();
-                        //Exercise exercise = dataModel.getData().getValue().get(index);
-                        //s.checked = !s.checked;
-                    //}
-                //});
+
             }
 
             final Exercise exercise = dataModel.getData().getValue().get(i);
 
             TextView nameTv = view.findViewById(R.id.stListItem_name_tv);
             TextView idTv = view.findViewById(R.id.stListItem_id_tv);
-            //CheckBox cb = view.findViewById(R.id.stListItem_check_cb);
+
             final ImageView avatarView = view.findViewById(R.id.stListItem_avatar);
 
             //cb.setTag(i);
@@ -221,29 +213,21 @@ public class ExercisesListFragment extends Fragment {
 
             if (view == null){
                 view = LayoutInflater.from(getActivity()).inflate(R.layout.student_list_item,null);
-                //final CheckBox cb = view.findViewById(R.id.stListItem_check_cb);
-                //cb.setOnClickListener(new View.OnClickListener() {
-                //@Override
-                // public void onClick(View view) {
-                //int index = (int) cb.getTag();
-                //Exercise exercise = dataModel.getData().getValue().get(index);
-                //s.checked = !s.checked;
-                //}
-                //});
+
             }
 
             final Exercise exercise = dataModel.getExerciseListByUserMail(UserProfileModel.instance.getCurrentUserMail()).getValue().get(i);
 
             TextView nameTv = view.findViewById(R.id.stListItem_name_tv);
             TextView idTv = view.findViewById(R.id.stListItem_id_tv);
-            //CheckBox cb = view.findViewById(R.id.stListItem_check_cb);
+
             final ImageView avatarView = view.findViewById(R.id.stListItem_avatar);
 
-            //cb.setTag(i);
+
 
             nameTv.setText(exercise.description);
             idTv.setText(exercise.id);
-            //cb.setChecked(s.checked);
+
             avatarView.setImageResource(R.drawable.practice);
             avatarView.setTag(exercise.id);
             if (exercise.image != null){

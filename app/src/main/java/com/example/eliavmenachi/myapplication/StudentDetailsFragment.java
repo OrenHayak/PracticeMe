@@ -10,14 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link StudentDetailsFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link StudentDetailsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class StudentDetailsFragment extends Fragment {
     private static final String ARG_PARAM1 = "studentId";
     String studentId;
@@ -28,20 +21,12 @@ public class StudentDetailsFragment extends Fragment {
     }
 
 
-//    public static StudentDetailsFragment newInstance(String studentId) {
-//        StudentDetailsFragment fragment = new StudentDetailsFragment();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, studentId);
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//            studentId = getArguments().getString(ARG_PARAM1);
-//        }
+
     }
 
     @Override
