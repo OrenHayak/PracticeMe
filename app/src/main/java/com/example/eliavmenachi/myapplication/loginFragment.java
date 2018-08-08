@@ -47,6 +47,8 @@ public class loginFragment extends Fragment {
 
         pbLogin.setVisibility(View.GONE);
 
+        getActivity().invalidateOptionsMenu();
+
         btnSave = view.findViewById(R.id.btnSubmitLog);
 
         btnSave.setOnClickListener(new View.OnClickListener() {
