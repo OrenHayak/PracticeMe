@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.example.eliavmenachi.myapplication.Model.UserProfileModel;
 
 public class loginFragment extends Fragment {
     private static final String ARG_EMAILL = "ARG_EMAILL";
@@ -39,6 +42,17 @@ public class loginFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        if (UserProfileModel.instance.getCurrentUserMail() != "")
+        {
+            Log.d("TAG","menu all posts selected");
+            ExercisesListFragment allPostsFragments = new ExercisesListFragment();
+            FragmentTransaction tranAll = getActivity().getSupportFragmentManager().beginTransaction();
+            tranAll.replace(R.id.main_container, allPostsFragments);
+            tranAll.addToBackStack("tag");
+            tranAll.commit();
+        }
+
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 
         etPassword = view.findViewById(R.id.etPasswordLog);
