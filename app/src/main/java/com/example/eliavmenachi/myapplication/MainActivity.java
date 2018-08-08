@@ -10,8 +10,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.eliavmenachi.myapplication.Model.UserProfileModel;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -64,6 +67,14 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.main_menu,menu);
+
+        if (UserProfileModel.instance.getCurrentUserMail().isEmpty()){
+            menu.findItem(R.id.menu_out).setVisible(false);
+            menu.findItem(R.id.menu_my_posts).setVisible(false);
+            menu.findItem(R.id.menu_all_posts).setVisible(false);
+            menu.findItem(R.id.menu_add).setVisible(false);
+        }
+
         return true;
     }
 

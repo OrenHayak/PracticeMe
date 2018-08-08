@@ -79,6 +79,8 @@ public class ExercisesListFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_students_list, container, false);
 
+        getActivity().invalidateOptionsMenu();
+
         list = view.findViewById(R.id.studentslist_list);
 
         if (!isbyuser) {
