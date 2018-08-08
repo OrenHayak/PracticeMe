@@ -149,6 +149,7 @@ public class RegisterFragment extends Fragment {
     private boolean isInputValid(){
         boolean isValid = true;
 
+
         if (etUsername.getText().toString().isEmpty()) {
             isValid = false;
             etUsername.requestFocus();
